@@ -1,24 +1,45 @@
+<!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>To week number and back again</title>
+		<title>Week to Dates and back again</title>
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script type="text/javascript" src="ui-bootstrap-tpls-0.4.0.min.js"></script>		
 		<script type="text/javascript" src="app.js"></script>
+		<link rel="stylesheet" type="text/css" href="app.css">
 	</head>
 	<body>
-		<div ng-app="">
-			<div ng-controller="weekController">
-				<h1>To week number and back again</h1>
-				<label for="weekNo">Week:</label>
-				<input type="text" id="weekNo" name="weekNo" ng-model="weekVm.weekNo" ng-change="updateWeek()">
-				<br />
-				<h2>Week '{{weekVm.weekNo}}' is between '{{weekVm.firstDayOfWeek}}' and '{{weekVm.lastDayOfWeek}}'</h2>
-				<hr/>
-				<label for="currentDate">Date:</label>
-				<input type="text" id="currentDate" name="currentDate" ng-model="weekVm.currentDate" ng-change="updateDate()">
-				<br />
-				<h2>'{{weekVm.currentDate}}' is in week '{{weekVm.calculatedWeekNo}}'</h2>
-			</div>
-		</div>
+	<!-- Part 1: Wrap all page content here -->
+	    <div id="wrap" ng-app="" ng-controller="weekController">
 
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+	      <!-- Begin page content -->
+			<div class="container">
+				<div class="page-header">
+				  <h1>Week to Dates and back again</h1>
+				</div>
+				<p class="lead">WeekDater helps you find the right dates for a week number, or the other way around. This little tool was created by <a href="http://www.marcusoft.net">Marcus Hammarberg</a>, because he needed the answer to that question more than he wanted. I hope you find it useful too.</p>
+			</div>
+
+			<div class="container" id="weekNoToDate">
+				<h2>Week to dates</h2>
+				<div>
+					<label for="weekNo">Week:</label>
+					<input type="text" id="weekNo" name="weekNo" ng-model="weekVm.weekNo" ng-change="updateWeek()">
+					<br />
+					<strong>Week '{{weekVm.weekNo}}' is between '{{weekVm.firstDayOfWeek}}' and '{{weekVm.lastDayOfWeek}}'</strong>
+					</div>
+			</div>
+
+	        <div class="container" id="dateToWeekNo">
+	        	<h2>Date to weeks</h2>
+	        	<div>
+					<datepicker ng-model="weekVm.currentDate" show-weeks="false" ng-change="updateDate()"></datepicker>
+		        	<label for="currentDate">Date:</label>
+					<input type="text" id="currentDate" name="currentDate" ng-model="weekVm.currentDate" ng-change="updateDate()">
+					<br />
+					<strong>'{{weekVm.currentDate}}' is in week '{{weekVm.calculatedWeekNo}}'</strong>
+	        	</div>
+	        </div>
+	    </div>
 	</body>
 </html>
